@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewMaui"
+             xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:dataSource="clr-namespace:Syncfusion.Maui.DataSource;assembly=Syncfusion.Maui.DataSource"
+             x:Class="ListViewMaui.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ContactsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <listView:SfListView x:Name="listView" ItemSize="70"
+                                 GroupHeaderSize="60" 
+                                 FooterSize="60" ItemSpacing="0" IsStickyFooter="True"
+                                 AllowGroupExpandCollapse="True" ItemsSource="{Binding Items}">
+
+                <listView:SfListView.DataSource>
+                    <dataSource:DataSource>
+                        <dataSource:DataSource.GroupDescriptors>
+                            <dataSource:GroupDescriptor PropertyName="Age"/>
+                        </dataSource:DataSource.GroupDescriptors>
+                    </dataSource:DataSource>
+                </listView:SfListView.DataSource>
+
+                <listView:SfListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="#E4E4E4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start"
+                   VerticalOptions="Center" Padding="10,0,0,0">
+                                <Label Text="{Binding Key}" TextColor="Black" FontSize="Medium"/>
+                                <Label Text="Year" TextColor="Black" FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" Padding="0,0,20,0"
+                                       HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                <Label Text="{Binding Count}" TextColor="Black" FontSize="Medium"/>
+                                <Label Text="Item(s)" TextColor="Black" FontSize="Medium"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.GroupHeaderTemplate>
+
+                <listView:SfListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" 
+                                         VerticalOptions="Center" Padding="10,0,0,0">
+                            <Label Text="Items Count" TextColor="Black" FontSize="Medium"/>
+                            <Label Text="{Binding Items.Count}" TextColor="Black" FontSize="Medium"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </listView:SfListView.FooterTemplate>
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding ContactName}" FontSize="20"/>
+                            <Label Text="{Binding ContactNumber}" FontSize="15"/>
+                        </StackLayout>
+                       
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+            </listView:SfListView>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
