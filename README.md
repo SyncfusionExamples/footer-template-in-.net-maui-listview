@@ -1,6 +1,6 @@
-# footer-template-in-.net-maui-listview
+# Footer template in NET MAUI ListView (SfListView)
 
-This example demonstrates about how to show the items count in Footer view of .NET MAUI ListView (SfListView)
+This example demonstrates about how to show the items count in Footer view of .NET MAUI ListView (SfListView).
 
 ## Sample
 
